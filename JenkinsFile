@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('wo d Hello') {
+            steps {
+                sh '''echo "hello vinay"
+                ls -la
+                '''
+
+            }
+        }
+        stage('with docker Hello') {
+            agent{
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+          
+            steps {
+                sh '''
+                
+                npm --version
+                ls -la
+                '''
+                
+                
+            }
+        }
+    }
+}
